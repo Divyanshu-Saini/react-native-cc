@@ -8,13 +8,20 @@ import GoalInput from './components/GoalInput';
 export default function App() {
   const [courseGoal, setCourseGoal] = useState([]);
   const [isAddMode, setIsAddMode] = useState(false);
+  console.log('Re-Rendering');
+  console.log(courseGoal);
 
   const addGoalHandler = (goalTitle) => {
+    if (goalTitle.length === 0) {
+      return;
+    }
     setCourseGoal((currentGoals) => [...currentGoals, { id: Math.random().toString(), value: goalTitle }]);
     setIsAddMode(false);
   };
 
   const removeGoalHandler = (goalId) => {
+    console.log('To Be deleted :', goalId);
+    console.log('Current Goals :', courseGoal);
     setCourseGoal((currentGoals) => {
       return currentGoals.filter((goal) => goal.id !== goalId);
     });
